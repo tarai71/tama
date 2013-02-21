@@ -51,7 +51,7 @@ websocket.Open();
 				// Notify our objects that the level and the network is ready
 				foreach (GameObject go in FindObjectsOfType (typeof(GameObject)))
 					go.SendMessage ("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);
-websocket.Send("{\"type\":\"chat\",\"user\":\"ゲスト00\",\"text\":\"Start Server\",\"time\":\"2013-2-20 18:49:24\"}");
+websocket.Send("{\"type\":\"chat\",\"user\":\"ゲスト00\",\"text\":\"あStart Server\",\"time\":\"2013-2-20 18:49:24\"}");
 			}
 			GUILayout.EndVertical ();
 			remoteIP = GUILayout.TextField (remoteIP, GUILayout.MinWidth (100));
