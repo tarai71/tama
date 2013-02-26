@@ -1,10 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
-using System;
-using WebSocket4Net;
-
 public class ConnectGui : MonoBehaviour
 {
 
@@ -15,22 +11,9 @@ public class ConnectGui : MonoBehaviour
 //	private string connectionInfo = "";
 		public string gameTypeName = "";
 
-WebSocket websocket;
-private void websocket_Opened(object sender, EventArgs e)
-{
-     websocket.Send("{\"type\":\"join\",\"user\":\"ゲスト00\",\"time\":\"2013-2-20 18:49:24\"}");
-//     websocket.Send("Hello World!");
-}
 	void Awake ()
 	{
- 
-websocket = new WebSocket("ws://172.31.8.50:8888/");
-websocket.Opened += new EventHandler(websocket_Opened);
-//websocket.Error += new EventHandler<ErrorEventArgs>(websocket_Error);
-//websocket.Closed += new EventHandler(websocket_Closed);
-//websocket.MessageReceived += new EventHandler(websocket_MessageReceived);
-websocket.Open();
-	}
+ 	}
 
 	void OnGUI ()
 	{
@@ -51,7 +34,6 @@ websocket.Open();
 				// Notify our objects that the level and the network is ready
 				foreach (GameObject go in FindObjectsOfType (typeof(GameObject)))
 					go.SendMessage ("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);
-websocket.Send("{\"type\":\"chat\",\"user\":\"ゲスト00\",\"text\":\"あStart Server\",\"time\":\"2013-2-20 18:49:24\"}");
 			}
 			GUILayout.EndVertical ();
 			remoteIP = GUILayout.TextField (remoteIP, GUILayout.MinWidth (100));
@@ -84,7 +66,6 @@ websocket.Send("{\"type\":\"chat\",\"user\":\"ゲスト00\",\"text\":\"あStart 
 	{
 		if (this.enabled != false) {
 			Application.LoadLevel (Application.loadedLevel);
-websocket.Close();
 		} else {
 			NetworkLevelLoad n = (NetworkLevelLoad)FindObjectOfType (typeof(NetworkLevelLoad));
 			n.OnDisconnectedFromServer ();
