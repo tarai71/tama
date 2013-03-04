@@ -9,16 +9,18 @@ public class CreateChatGui : MonoBehaviour
 	private Object gm = null;
 	private bool enable = false;
 	private bool loged = false;
+	private string userid = "";
 	
 	void Update ()
 	{
 		if (Input.GetKeyDown(KeyCode.RightControl)) {
 			enable ^= true;
-			SetLog (loged);
+			SetLog (userid, loged);
 		}
 	}
 
-	public void SetLog (bool log) {
+	public void SetLog (string user, bool log) {
+		userid = user;
 		loged = log;
 		if (loged) {
 			if (enable) {
@@ -35,5 +37,9 @@ public class CreateChatGui : MonoBehaviour
 				Destroy (gm);
 			}
 		}
+	}
+	
+	public string GetUser () {
+		return userid;
 	}
 }
